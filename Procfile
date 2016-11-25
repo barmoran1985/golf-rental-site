@@ -1,0 +1,1 @@
+web: gunicorn golf-rental-site.wsgi:application
