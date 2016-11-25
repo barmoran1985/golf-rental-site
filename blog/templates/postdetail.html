@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load gravatar %}
+{% block content %}
+{% block head_js %}{% endblock %}
+    <div style="align-content: center;">
+        <div style="align-content: center;">
+            <a class="story-img" href="#">
+                <img src="{% gravatar_url post.author.email 150 %}"
+                     style="width:100px; height: 100px; background-color: #838367; color: #ffffff;" class="img-circle">
+            </a>
+        </div>
+        <div>
+            <h3>{{ post.title }}</h3>
+            <div>
+                <div>
+                    {% if post.image %}
+                        <img src="/media/{{ post.image }}" style="width:500px; background-color: #838367; color: #ffffff;" >
+                    {% endif %}
+                    <p>{{ post.content|linebreaks }}</p>
+                    <p>
+
+                        {% if user.is_superuser %}
+                            <button class="btn btn-default" onclick="location.href='edit'">Edit</button>
+                            <button class="btn btn-default" onclick="location.href='/blog'">Back To Blog</button>
+                        {% else %}
+                            <button class="btn btn-default" onclick="location.href='/blog'">Back To Blog</button>
+                        {% endif %}
+                    </p>
+                    <p>{{ post.published_date }} | Views {{ post.views }}</p>
+                    {% load disqus_tags %}
+                    {% set_disqus_title post.title %}
+                    {% disqus_show_comments %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
