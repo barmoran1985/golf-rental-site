@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ ['clubs4hire.herokuapp.com', '127.0.0.1']
 
 CLEAR_DATABASE_URL = os.environ.get("CLEAR_DATABASE_URL", "")
 DATABASES['default'] = dj_database_url.parse(CLEAR_DATABASE_URL)
