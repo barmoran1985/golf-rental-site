@@ -97,9 +97,7 @@ DISQUS_WEBSITE_SHORTNAME = 'BootcampBlog'
 # }
 
 
-SITE_ID = 1
 
-SITE_URL = 'HTTP://127.0.0.1:8000'
 PAYPAL_NOTIFY_URL = 'http://127.0.0.1/JD8FJB88ashssa8HJHS&^&**HJHJgchgkj/'
 PAYPAL_RECEIVER_EMAIL = 'bar-facilitator@gmail.com'
 
