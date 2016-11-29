@@ -26,10 +26,11 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ ['clubs4hire.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['clubs4hire.herokuapp.com', '127.0.0.1']
 
-CLEARDB_DATABASE_URL = os.environ.get("CLEARDB_DATABASE_URL", "")
-DATABASES['default'] = dj_database_url.parse(CLEARDB_DATABASE_URL)
+
+
+
 
 
 # Application definition
@@ -89,13 +90,14 @@ DISQUS_WEBSITE_SHORTNAME = 'BootcampBlog'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
+DATABASES = {
+    'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+CLEARDB_DATABASE_URL = os.environ.get("CLEARDB_DATABASE_URL", "")
+DATABASES['default'] = dj_database_url.parse(CLEARDB_DATABASE_URL)
 
 SITE_ID = 1
 
