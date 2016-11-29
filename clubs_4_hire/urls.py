@@ -33,7 +33,7 @@ urlpatterns = [
     url(r'', include(accounts_urls)),
     url(r'^rental/', include(products_urls)),
     url(r'cart/', include(cart_urls)),
-    url(r'^paypal-return', paypal_views.paypal_return, name='return'),
-    url(r'^paypal-cancel', paypal_views.paypal_cancel, name='cancel')
+    url(r'^paypal-return/', paypal_views.paypal_return, name='return'),
+    url(r'^paypal-cancel/', paypal_views.paypal_cancel, name='cancel')
 ]
 
