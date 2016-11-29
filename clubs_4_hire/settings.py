@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [ ['clubs4hire.herokuapp.com', '127.0.0.1']
 
-CLEAR_DATABASE_URL = os.environ.get("CLEARDB_DATABASE_URL", "")
+CLEARDB_DATABASE_URL = os.environ.get("CLEARDB_DATABASE_URL", "")
 DATABASES['default'] = dj_database_url.parse(CLEARDB_DATABASE_URL)
 
 
