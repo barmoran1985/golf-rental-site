@@ -26,11 +26,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['clubs4hire.herokuapp.com']
-
-
-
-
+ALLOWED_HOSTS = ['clubs4hire.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -55,11 +51,6 @@ INSTALLED_APPS = [
     'storages'
 
 ]
-
-AWS_HEADERS = {  # see http://developer.yahoo.com/performance/rules.html#expires
-    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
-    'Cache-Control': 'max-age=94608000',
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -91,10 +82,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'clubs_4_hire.wsgi.application'
-DISQUS_WEBSITE_SHORTNAME = 'BootcampBlog'
 
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
+DISQUS_WEBSITE_SHORTNAME = 'BootcampBlog'
 
 DATABASES = {
     'default': {
@@ -102,18 +91,10 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
 CLEARDB_DATABASE_URL = os.environ.get("CLEARDB_DATABASE_URL", "")
+
 DATABASES['default'] = dj_database_url.parse(CLEARDB_DATABASE_URL)
-
-SITE_ID = 1
-
-SITE_URL = 'HTTP://127.0.0.1:8000'
-PAYPAL_NOTIFY_URL = 'http://127.0.0.1/JD8FJB88ashssa8HJHS&^&**HJHJgchgkj/'
-PAYPAL_RECEIVER_EMAIL = 'bar-facilitator@gmail.com'
-
-
-# Password validation
-# https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -130,12 +111,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Stripe environment variables
-
-
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.10/topics/i18n/
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.backends.EmailAuth'
+]
 
 LANGUAGE_CODE = 'en-us'
 
@@ -147,45 +126,48 @@ USE_L10N = True
 
 USE_TZ = True
 
+PAYPAL_NOTIFY_URL = 'http://127.0.0.1/JD8FJB88ashssa8HJHS&^&**HJHJgchgkj/'
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
+PAYPAL_RECEIVER_EMAIL = 'bar-facilitator@gmail.com'
 
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
-
-
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'accounts.backends.EmailAuth'
-]
+AWS_HEADERS = {  # see http://developer.yahoo.com/performance/rules.html#expires
+    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+    'Cache-Control': 'max-age=94608000',
+}
 
 
 AWS_STORAGE_BUCKET_NAME = 'clubs4hire-bucket'
 AWS_ACCESS_KEY_ID = 'AKIAIG65LMLTUQZBB2WQ'
 AWS_SECRET_ACCESS_KEY = '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'
-
-# Tell django-storages that when coming up with the URL for an item in S3 storage, keep
-# it simple - just use this domain plus the path. (If this isn't set, things get complicated).
-# This controls how the `static` template tag from `staticfiles` gets expanded, if you're using it.
-# We also use it in the next setting.
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-# This is used by the `static` template tag from `static`, if you're using that. Or if anything else
-# refers directly to STATIC_URL. So it's safest to always set it.
-
-
-# Tell the staticfiles app to use S3Boto storage when writing the collected static files (when
-# you run `collectstatic`).
-
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static")
+)
 
 STATICFILES_LOCATION = 'static'
 STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIAFILES_LOCATION = 'media'
 MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
