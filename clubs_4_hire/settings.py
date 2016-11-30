@@ -107,7 +107,7 @@ DATABASES['default'] = dj_database_url.parse(CLEARDB_DATABASE_URL)
 
 SITE_ID = 1
 
-SITE_URL = 'HTTP://127.0.0.1:8000'
+SITE_URL = 'https://clubs4hire.herokuapp.com'
 PAYPAL_NOTIFY_URL = 'http://127.0.0.1/JD8FJB88ashssa8HJHS&^&**HJHJgchgkj/'
 PAYPAL_RECEIVER_EMAIL = 'bar-facilitator@gmail.com'
 
