@@ -17,6 +17,7 @@ requests==2.12.1
 six==1.10.0
 stripe==1.41.1
 yagmail==0.5.148
+MySQL-python==1.2.5
 
 
 
